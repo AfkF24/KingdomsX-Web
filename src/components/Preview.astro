@@ -1,0 +1,69 @@
+---
+import { SITE } from "../config";
+---
+<section class="preview position-relative" id="preview" aria-labelledby="preview-title">
+  <div class="container position-relative z-1">
+    <h2 class="section-title text-center" id="preview-title">Made to be modern and intuitive.</h2>
+    <p class="section-kicker text-center mx-auto mt-3">Players use familiar <code>/k</code> commands to create kingdoms, claim land, manage their kingdoms through modern GUIs, engage in diplomacy & war operations.</p>
+    <div class="row g-0 align-items-stretch preview-shell overflow-hidden">
+      <div class="col-lg-5 terminal preview-terminal d-flex flex-column position-relative overflow-hidden" aria-label="Animated KingdomsX command output">
+        <div class="terminal-bar d-flex gap-2" aria-hidden="true"><span class="dot rounded-pill"></span><span class="dot rounded-pill"></span><span class="dot rounded-pill"></span></div>
+        <div class="terminal-stage align-items-center" data-terminal-history>
+          <div class="terminal-entry is-visible" data-preview-step="0">
+            <p class="line terminal-comment">Wilderness</p>
+            <p class="line">Stepping into unoccupied land...</p>
+          </div>
+          <div class="terminal-entry" data-preview-step="1">
+            <p class="line"><span class="cmd">/k create Apothicas</span></p>
+            <p class="line"><span class="ok">You have founded Apothicas!</span></p>
+          </div>
+          <div class="terminal-entry" data-preview-step="2">
+            <p class="line"><span class="cmd">/k claim</span></p>
+            <p class="line"><span class="ok">Claimed more chunks as kingdom land.</span></p>
+          </div>
+          <div class="terminal-entry" data-preview-step="3">
+            <p class="line terminal-comment">Purchased Nexus upgrades</p>
+            <p class="line">Land is expanding around Apothicas.</p>
+            <p class="line">Builders reinforce the Nexus and raise the first structures.</p>
+          </div>
+          <div class="terminal-entry" data-preview-step="4">
+            <p class="line"><span class="cmd">/k ally Eldoria</span></p>
+            <p class="line"><span class="coin">Sent an alliance request to Eldoria...</span></p>
+            <p class="line">...</p>
+            <p class="line"><span class="important">You're now allies with Eldoria!</span></p>
+          </div>
+          <div class="terminal-entry" data-preview-step="5">
+            <p class="line"><span class="cmd">/k enemy Varkhollow</span></p>
+            <p class="line"><span class="danger">Your kingdom has declared to be enemies with Varkhollow!</span></p>
+          </div>
+          <div class="terminal-entry" data-preview-step="6">
+            <p class="line"><span class="cmd">/k invade</span></p>
+            <p class="line"><span class="danger">You're now invading Varkhollow.</span></p>
+            <p class="line">Defeat their champion to overclaim their land!</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 map preview-map position-relative overflow-hidden" role="group" aria-label="Animated map preview of Apothicas founding, expanding, forming alliances, declaring enemies, and invading.">
+        <img class="map-image map-frame is-active position-absolute top-0 start-0 w-100 h-100 object-fit-cover" data-preview-step="0" src={`${SITE.assets}/images/preview-map-1.webp`} alt="Unclaimed wilderness map before a KingdomsX kingdom is founded." width="1448" height="1086" draggable="false" />
+        <img class="map-image map-frame position-absolute top-0 start-0 w-100 h-100 object-fit-cover" data-preview-step="1" src={`${SITE.assets}/images/preview-map-2.webp`} alt="KingdomsX map after founding the Apothicas kingdom." width="1448" height="1086" loading="lazy" draggable="false" />
+        <img class="map-image map-frame position-absolute top-0 start-0 w-100 h-100 object-fit-cover" data-preview-step="2" src={`${SITE.assets}/images/preview-map-3.webp`} alt="KingdomsX map showing claimed kingdom land expanding around Apothicas." width="1448" height="1086" loading="lazy" draggable="false" />
+        <img class="map-image map-frame position-absolute top-0 start-0 w-100 h-100 object-fit-cover" data-preview-step="3" src={`${SITE.assets}/images/preview-map-4.webp`} alt="KingdomsX map showing Nexus upgrades and structures around claimed land." width="1448" height="1086" loading="lazy" draggable="false" />
+        <img class="map-image map-frame position-absolute top-0 start-0 w-100 h-100 object-fit-cover" data-preview-step="4" src={`${SITE.assets}/images/preview-map-5.webp`} alt="KingdomsX map showing an alliance between Apothicas and Eldoria." width="1448" height="1086" loading="lazy" draggable="false" />
+        <img class="map-image map-frame position-absolute top-0 start-0 w-100 h-100 object-fit-cover" data-preview-step="5" src={`${SITE.assets}/images/preview-map-6.webp`} alt="KingdomsX map showing Varkhollow marked as an enemy kingdom." width="1448" height="1086" loading="lazy" draggable="false" />
+        <img class="map-image map-frame position-absolute top-0 start-0 w-100 h-100 object-fit-cover" data-preview-step="6" src={`${SITE.assets}/images/preview-map-7.webp`} alt="KingdomsX map showing an invasion against Varkhollow territory." width="1448" height="1086" loading="lazy" draggable="false" />
+        <div class="preview-progress d-flex align-items-center justify-content-center position-absolute start-50 translate-middle-x rounded-pill" aria-label="Preview frames">
+          <button class="is-active rounded-pill" type="button" aria-label="Show preview frame 1" aria-current="true"></button>
+          <button class="rounded-pill" type="button" aria-label="Show preview frame 2"></button>
+          <button class="rounded-pill" type="button" aria-label="Show preview frame 3"></button>
+          <button class="rounded-pill" type="button" aria-label="Show preview frame 4"></button>
+          <button class="rounded-pill" type="button" aria-label="Show preview frame 5"></button>
+          <button class="rounded-pill" type="button" aria-label="Show preview frame 6"></button>
+          <button class="rounded-pill" type="button" aria-label="Show preview frame 7"></button>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+      <a class="btn btn-kingdom d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={SITE.wiki} target="_blank" rel="noopener noreferrer">Learn More</a>
+    </div>
+  </div>
+</section>

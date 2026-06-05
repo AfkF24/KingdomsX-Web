@@ -1,0 +1,21 @@
+---
+import { SITE } from "../config";
+---
+<footer class="site-footer">
+  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between gap-4">
+    <div class="footer-copy d-flex flex-column flex-md-row align-items-center gap-3 justify-content-center justify-content-sm-start text-center text-md-start">
+      <img src={`${SITE.assets}/images/logo.webp`} alt="" width="256" height="256" draggable="false" />
+      <span>
+        &copy; 2026 KingdomsX. A plugin by <a href={SITE.author} target="_blank" rel="noopener noreferrer">Crypto Morin</a>.
+        <br />
+        Website proudly hosted by AfkF24.
+      </span>
+    </div>
+    <div class="footer-links d-flex flex-wrap gap-4" aria-label="Footer links">
+      <a href={SITE.discord} target="_blank" rel="noopener noreferrer">Discord</a>
+      <a href={SITE.spigot} target="_blank" rel="noopener noreferrer">SpigotMC</a>
+      <a href={SITE.modrinth} target="_blank" rel="noopener noreferrer">Modrinth</a>
+      <a href={SITE.wiki} target="_blank" rel="noopener noreferrer">Wiki</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,15 @@
+{
+  "name": "kingdomsx-web-astro",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node ./node_modules/astro/astro.js dev",
+    "build": "node ./node_modules/astro/astro.js build",
+    "preview": "node ./node_modules/astro/astro.js preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.13.4"
+  }
+}
