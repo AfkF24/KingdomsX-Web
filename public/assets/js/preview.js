@@ -5,7 +5,6 @@
     return;
   }
 
-  const map = preview.querySelector(".preview-map");
   const mapFrames = [...preview.querySelectorAll(".map-frame")];
   const terminalEntries = [...preview.querySelectorAll(".terminal-entry")];
   const terminalHistory = preview.querySelector("[data-terminal-history]");
@@ -13,7 +12,7 @@
   const progressPills = [...preview.querySelectorAll(".preview-progress button")];
   const mobilePreview = window.matchMedia("(max-width: 640px)");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const frameDuration = 4000;
+  const frameDuration = 2000;
   const finalFrameDuration = frameDuration * 2;
   let activeStep = 0;
   let previousFrameCleanup;
@@ -21,10 +20,10 @@
   let stepStartedAt = 0;
   let remainingFrameTime = frameDuration;
   let currentFrameDuration = frameDuration;
-  let touchHoldTimer;
-  let activeTouchHold;
   let isPaused = false;
   let isPreviewVisible = false;
+  let isProgressHovered = false;
+  let isProgressFocused = false;
   const preloadedFrames = new Set();
 
   if (mapFrames.length === 0) {
@@ -156,7 +155,8 @@
       return;
     }
 
-    pausePreview();
+    isProgressHovered = true;
+    syncPreviewPauseState();
   };
 
   const resumePreviewOnHover = (event) => {
@@ -164,85 +164,31 @@
       return;
     }
 
+    isProgressHovered = false;
+    syncPreviewPauseState();
+  };
+
+  const syncPreviewPauseState = () => {
+    if (isProgressHovered || isProgressFocused) {
+      pausePreview();
+      return;
+    }
+
     resumePreview();
   };
 
-  const pausePreviewOnTouchHold = (event) => {
-    if (
-      event.pointerType !== "touch" ||
-      activeTouchHold ||
-      (event.target instanceof Element && event.target.closest(".preview-progress"))
-    ) {
-      return;
-    }
-
-    activeTouchHold = {
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startY: event.clientY,
-      didPause: false
-    };
-
-    touchHoldTimer = window.setTimeout(() => {
-      if (!activeTouchHold || activeTouchHold.pointerId !== event.pointerId) {
-        return;
-      }
-
-      activeTouchHold.didPause = true;
-      pausePreview();
-    }, 220);
+  const pausePreviewOnFocus = () => {
+    isProgressFocused = true;
+    syncPreviewPauseState();
   };
 
-  const cancelTouchHold = (event) => {
-    if (event.pointerType !== "touch" || !activeTouchHold || event.pointerId !== activeTouchHold.pointerId) {
+  const resumePreviewOnFocus = (event) => {
+    if (event.relatedTarget instanceof Element && progressTrack?.contains(event.relatedTarget)) {
       return;
     }
 
-    window.clearTimeout(touchHoldTimer);
-
-    if (activeTouchHold.didPause) {
-      resumePreview();
-    }
-
-    activeTouchHold = undefined;
-  };
-
-  const syncTouchHoldMovement = (event) => {
-    if (event.pointerType !== "touch" || !activeTouchHold || event.pointerId !== activeTouchHold.pointerId) {
-      return;
-    }
-
-    const distanceX = Math.abs(event.clientX - activeTouchHold.startX);
-    const distanceY = Math.abs(event.clientY - activeTouchHold.startY);
-
-    if (distanceX > 10 || distanceY > 10) {
-      cancelTouchHold(event);
-    }
-  };
-
-  const syncProgressIndicator = (step) => {
-    if (!progressTrack || progressPills.length === 0) {
-      return;
-    }
-
-    const activePill = progressPills[step];
-    const trackRect = progressTrack.getBoundingClientRect();
-    const pillRect = activePill?.getBoundingClientRect();
-
-    if (!activePill || trackRect.width === 0 || pillRect.width === 0) {
-      return;
-    }
-
-    const indicatorWidth = parseFloat(window.getComputedStyle(progressTrack, "::before").width) || pillRect.width;
-    const indicatorLeft = pillRect.left - trackRect.left + (pillRect.width / 2) - (indicatorWidth / 2);
-    progressTrack.style.setProperty("--preview-indicator-left", `${Math.max(0, indicatorLeft)}px`);
-
-    progressTrack.classList.remove("is-animating");
-    void progressTrack.offsetWidth;
-
-    if (!prefersReducedMotion) {
-      progressTrack.classList.add("is-animating");
-    }
+    isProgressFocused = false;
+    syncPreviewPauseState();
   };
 
   function showStep(step, options = {}) {
@@ -276,8 +222,6 @@
       pill.setAttribute("aria-current", isActive ? "true" : "false");
     });
 
-    syncProgressIndicator(normalizedStep);
-
     if (previousStep !== normalizedStep && !prefersReducedMotion) {
       previousFrameCleanup = window.setTimeout(() => {
         mapFrames[previousStep]?.classList.remove("is-previous");
@@ -299,22 +243,14 @@
   });
 
   if (window.PointerEvent) {
-    map?.addEventListener("pointerenter", pausePreviewOnHover);
-    map?.addEventListener("pointerleave", resumePreviewOnHover);
-    map?.addEventListener("pointerdown", pausePreviewOnTouchHold);
-    map?.addEventListener("pointermove", syncTouchHoldMovement);
-    map?.addEventListener("pointerup", cancelTouchHold);
-    map?.addEventListener("pointercancel", cancelTouchHold);
-    map?.addEventListener("lostpointercapture", cancelTouchHold);
-    document.addEventListener("pointermove", syncTouchHoldMovement);
-    document.addEventListener("pointerup", cancelTouchHold);
-    document.addEventListener("pointercancel", cancelTouchHold);
+    progressTrack?.addEventListener("pointerenter", pausePreviewOnHover);
+    progressTrack?.addEventListener("pointerleave", resumePreviewOnHover);
   } else {
-    map?.addEventListener("mouseenter", pausePreview);
-    map?.addEventListener("mouseleave", resumePreview);
+    progressTrack?.addEventListener("mouseenter", pausePreview);
+    progressTrack?.addEventListener("mouseleave", resumePreview);
   }
-  map?.addEventListener("focusin", pausePreview);
-  map?.addEventListener("focusout", resumePreview);
+  progressTrack?.addEventListener("focusin", pausePreviewOnFocus);
+  progressTrack?.addEventListener("focusout", resumePreviewOnFocus);
 
   const syncPreviewLayout = () => {
     showStep(activeStep, { skipSchedule: true });
