@@ -1,10 +1,12 @@
 ---
 import { SITE } from "../config";
+import SectionOrnament from "./SectionOrnament.astro";
 ---
 <section class="preview position-relative" id="preview" aria-labelledby="preview-title">
   <div class="container position-relative z-1">
     <h2 class="section-title text-center" id="preview-title">Made to be modern and intuitive.</h2>
-    <p class="section-kicker text-center mx-auto mt-3">Players use familiar <code>/k</code> commands to create kingdoms, claim land, manage their kingdoms through modern GUIs, engage in diplomacy & war operations.</p>
+    <SectionOrnament />
+    <p class="section-kicker text-center mx-auto">Players use familiar <code>/k</code> commands to create kingdoms, claim land, manage their kingdoms through modern GUIs, engage in diplomacy & war operations.</p>
     <div class="row g-0 align-items-stretch preview-shell overflow-hidden">
       <div class="col-lg-5 terminal preview-terminal d-flex flex-column position-relative overflow-hidden" aria-label="Animated KingdomsX command output">
         <div class="terminal-bar d-flex gap-2" aria-hidden="true"><span class="dot rounded-pill"></span><span class="dot rounded-pill"></span><span class="dot rounded-pill"></span></div>
@@ -29,7 +31,6 @@ import { SITE } from "../config";
           <div class="terminal-entry" data-preview-step="4">
             <p class="line"><span class="cmd">/k ally Eldoria</span></p>
             <p class="line"><span class="coin">Sent an alliance request to Eldoria...</span></p>
-            <p class="line">...</p>
             <p class="line"><span class="important">You're now allies with Eldoria!</span></p>
           </div>
           <div class="terminal-entry" data-preview-step="5">

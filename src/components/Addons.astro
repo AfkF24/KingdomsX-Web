@@ -1,0 +1,62 @@
+---
+import { SITE } from "../config";
+import SectionOrnament from "./SectionOrnament.astro";
+
+const addons = [
+  {
+    title: "Outposts",
+    description: "Run KoTH-style outpost events where kingdoms fight to hold a WorldGuard region. The kingdom with the most time inside wins configurable rewards.",
+    icon: "fa-chess-rook"
+  },
+  {
+    title: "Map Viewers",
+    description: "Add kingdom markers and icons to Dynmap, BlueMap, Squaremap, and Pl3xMap. Kingdoms can customize their flag and marker color from Nexus settings.",
+    icon: "fa-map-location-dot"
+  },
+  {
+    title: "Peace Treaties",
+    description: "Send treaty proposals to enemy kingdoms with terms like reparations, land handling, nation changes, or vassal restrictions.",
+    icon: "fa-scroll"
+  },
+  {
+    title: "EngineHub",
+    description: "Adds WorldGuard and WorldEdit integration, including region claim protection, custom flags, WorldEdit protections, and schematic-based buildings.",
+    icon: "fa-gears"
+  },
+  {
+    title: "Admin Tools",
+    description: "Experimental utilities for debugging errors, tracking config issues, and editing KingdomsX plugin data more easily.",
+    icon: "fa-shield-halved"
+  }
+];
+---
+<section class="addons position-relative" id="addons" aria-labelledby="addons-title">
+  <div class="container position-relative z-1">
+    <h2 class="section-title text-center" id="addons-title">Addons</h2>
+    <SectionOrnament />
+    <p class="section-kicker text-center mx-auto">Download and install optional addons when your server needs extra integrations, mechanics, or staff tools.</p>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-3 feature-band addons-grid">
+      {addons.map((addon) => (
+        <article class="col">
+          <div class="feature addon-module text-center h-100">
+            <i class={`feature-icon fa-solid ${addon.icon}`} aria-hidden="true"></i>
+            <h3>{addon.title}</h3>
+            <p>{addon.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="addons-footer d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
+      <a class="btn btn-kingdom d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={`${SITE.wiki}/Addons`} target="_blank" rel="noopener noreferrer">Learn More</a>
+      <div class="addons-command-wrap d-flex flex-column align-items-center">
+        <button class="btn btn-kingdom addons-command d-inline-flex align-items-center justify-content-center gap-2 fw-bold mb-0" type="button" data-copy-command="/k admin addons" aria-label="Copy in-game command /k admin addons">
+          <code class="cmd">/k admin addons</code>
+          <i class="addons-command-copy fa-regular fa-copy" aria-hidden="true"></i>
+          <span class="visually-hidden" data-copy-status aria-live="polite"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

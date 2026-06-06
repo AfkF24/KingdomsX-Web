@@ -358,6 +358,7 @@ h1 span:nth-child(2) {
   border-right: 0.25rem solid currentColor;
   border-bottom: 0.25rem solid currentColor;
   transform: translateX(-50%) rotate(45deg);
+  animation: dividerCaretJump 5.6s ease-in-out infinite;
   transition: color 160ms ease, filter 160ms ease, transform 160ms ease;
 }
 
@@ -368,6 +369,7 @@ h1 span:nth-child(2) {
 
 .divider-caret:hover::before,
 .divider-caret:focus-visible::before {
+  animation: none;
   filter: drop-shadow(0 0 0.625rem rgba(251, 176, 59, 0.6));
   transform: translateX(-50%) translateY(-0.125rem) rotate(45deg);
 }
@@ -380,6 +382,7 @@ h1 span:nth-child(2) {
 .section-title {
   font-size: clamp(2rem, 4vw, 3.2rem);
   color: var(--amber);
+  line-height: 1.08;
 }
 
 .section-kicker {
@@ -390,18 +393,18 @@ h1 span:nth-child(2) {
 
 .features,
 .preview,
-.comparison,
+.addons,
 .cta {
   isolation: isolate;
 }
 
 .features::before,
 .preview::before,
-.comparison::before,
+.addons::before,
 .cta::before,
 .features::after,
 .preview::after,
-.comparison::after,
+.addons::after,
 .cta::after {
   content: "";
   position: absolute;
@@ -414,7 +417,7 @@ h1 span:nth-child(2) {
 
 .features::before,
 .preview::before,
-.comparison::before,
+.addons::before,
 .cta::before {
   top: 0;
   background: linear-gradient(180deg, rgba(7, 16, 25, 0.28), rgba(7, 16, 25, 0));
@@ -422,7 +425,7 @@ h1 span:nth-child(2) {
 
 .features::after,
 .preview::after,
-.comparison::after,
+.addons::after,
 .cta::after {
   bottom: 0;
   background: linear-gradient(0deg, rgba(7, 16, 25, 0.28), rgba(7, 16, 25, 0));
@@ -434,21 +437,26 @@ h1 span:nth-child(2) {
 
 .feature-band {
   margin-top: 1.75rem;
-  border-top: 0.0625rem solid rgba(115, 144, 169, 0.12);
-  border-bottom: 0.0625rem solid rgba(115, 144, 169, 0.12);
-  background: linear-gradient(90deg, rgba(22, 36, 52, 0.72), rgba(33, 52, 69, 0.78), rgba(22, 36, 52, 0.72));
-  box-shadow: var(--shadow);
 }
 
 .feature {
   min-height: 15.3125rem;
   padding: 2.125rem 1.625rem;
-  border-right: 0;
-  border-bottom: 0.0625rem solid var(--line-cool);
+  border: 0.0625rem solid var(--line-cool);
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(180deg, rgba(22, 36, 52, 0.78), rgba(16, 29, 41, 0.78)),
+    rgba(16, 27, 39, 0.72);
+  box-shadow: 0 1.125rem 2.75rem rgba(0, 0, 0, 0.24), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
 }
 
-.feature:last-child {
-  border-bottom: 0;
+.feature:hover,
+.feature:focus-within {
+  transform: translateY(-0.25rem);
+  border-color: rgba(251, 176, 59, 0.42);
+  box-shadow: 0 1.375rem 3rem rgba(0, 0, 0, 0.3), 0 0 0 0.0625rem rgba(251, 176, 59, 0.08), inset 0 0.0625rem 0 rgba(255, 255, 255, 0.06);
+  filter: brightness(1.03);
 }
 
 .feature .feature-icon {
@@ -460,6 +468,14 @@ h1 span:nth-child(2) {
   color: var(--amber);
   font-size: 3.7rem;
   filter: drop-shadow(0 0.5rem 1.25rem rgba(255, 116, 23, 0.24));
+  transition: color 180ms ease, filter 180ms ease, transform 180ms ease;
+}
+
+.feature:hover .feature-icon,
+.feature:focus-within .feature-icon {
+  color: var(--orange-light);
+  filter: drop-shadow(0 0.55rem 1.35rem rgba(251, 176, 59, 0.34));
+  transform: translateY(-0.0625rem);
 }
 
 .feature h3 {
@@ -737,110 +753,133 @@ h1 span:nth-child(2) {
   animation-play-state: paused;
 }
 
-.comparison {
+.addons {
   padding: 6.125rem 0 6.75rem;
   background:
     linear-gradient(180deg, rgba(3, 7, 12, 0.32), rgba(7, 16, 25, 0.22) 24%, rgba(7, 16, 25, 0.28) 100%),
     radial-gradient(circle at 50% 30%, rgba(45, 64, 83, 0.24), transparent 28rem);
 }
 
-.comparison-shell {
-  margin-top: 1.75rem;
-  border: 0.0625rem solid rgba(251, 176, 59, 0.34);
-  background:
-    linear-gradient(135deg, rgba(251, 176, 59, 0.08), transparent 34%),
-    rgba(8, 16, 24, 0.82);
-  box-shadow: var(--shadow);
-  scrollbar-color: var(--amber) rgba(115, 144, 169, 0.16);
-  clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));
-}
-
-.comparison-table {
-  --bs-table-bg: transparent;
-  --bs-table-color: #e8edf2;
-  --bs-table-border-color: rgba(115, 144, 169, 0.18);
-  --bs-table-hover-bg: rgba(251, 176, 59, 0.045);
-  --bs-table-hover-color: #e8edf2;
-  min-width: 57.5rem;
-  font-size: 0.92rem;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.comparison-table th,
-.comparison-table td {
-  padding: 1rem 1.125rem;
-  border-right: 0.0625rem solid rgba(115, 144, 169, 0.14);
-  border-bottom: 0.0625rem solid rgba(115, 144, 169, 0.13);
-}
-
-.comparison-table th:last-child,
-.comparison-table td:last-child {
-  border-right: 0;
-}
-
-.comparison-table thead th {
+.section-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: min(100%, 18rem);
+  margin: 0.875rem auto 0;
   color: var(--amber);
-  background:
-    linear-gradient(180deg, rgba(251, 176, 59, 0.08), rgba(16, 27, 39, 0.92)),
-    rgba(16, 27, 39, 0.92);
-  font-family: var(--display-font-family);
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-size: 1.02rem;
+  opacity: 0.88;
 }
 
-.comparison-table thead th:first-child,
-.comparison-table tbody th {
-  position: sticky;
-  left: 0;
+.section-ornament span {
+  flex: 1 1 auto;
+  height: 0.0625rem;
+  background: linear-gradient(90deg, transparent, rgba(251, 176, 59, 0.74));
+}
+
+.section-ornament span:last-child {
+  background: linear-gradient(90deg, rgba(251, 176, 59, 0.74), transparent);
+}
+
+.section-ornament img {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 0.875rem rgba(255, 116, 23, 0.35));
+}
+
+.section-ornament + .section-kicker,
+.cta-panel .section-ornament + p {
+  margin-top: 1rem !important;
+}
+
+.addons-grid {
+  margin-top: 1.75rem;
+}
+
+.addons-command {
+  position: relative;
+  isolation: isolate;
+  min-width: min(100%, 17rem);
+  overflow: hidden;
+}
+
+.addons-command code {
+  position: relative;
   z-index: 1;
-  min-width: 9.375rem;
-  text-align: left;
-  background: rgba(13, 23, 34, 0.96);
-  box-shadow: 0.0625rem 0 0 rgba(251, 176, 59, 0.18);
+  color: inherit;
+  font-family: "Cascadia Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.98rem;
+  white-space: nowrap;
+  transition: opacity 180ms ease, transform 180ms ease;
 }
 
-.comparison-table thead th:first-child {
-  z-index: 3;
+.addons-command-copy {
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 1;
+  margin-left: 0.375rem;
+  padding-left: 0.75rem;
+  border-left: 0.0625rem solid rgba(251, 176, 59, 0.24);
+  color: #d5dbe0;
+  font-size: 0.95rem;
+  transition: opacity 180ms ease, transform 180ms ease;
 }
 
-.comparison-table tbody th {
-  color: #fff1dc;
-  font-weight: 800;
-}
-
-.comparison-table tbody tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.025);
-}
-
-.comparison-table .kingdomsx-column {
-  color: #fff6de;
-  background:
-    linear-gradient(180deg, rgba(251, 176, 59, 0.14), rgba(255, 116, 23, 0.075)),
-    rgba(16, 27, 39, 0.72);
-  box-shadow: inset 0.0625rem 0 0 rgba(251, 176, 59, 0.2), inset -0.0625rem 0 0 rgba(251, 176, 59, 0.2);
-}
-
-.comparison-table thead .kingdomsx-column {
-  color: #fff5df;
-  background:
-    linear-gradient(180deg, rgba(255, 116, 23, 0.34), rgba(251, 176, 59, 0.12)),
-    rgba(16, 27, 39, 0.96);
-}
-
-.comparison-table tbody tr:hover .kingdomsx-column {
-  background:
-    linear-gradient(180deg, rgba(251, 176, 59, 0.18), rgba(255, 116, 23, 0.1)),
-    rgba(20, 34, 47, 0.86);
-}
-
-.comparison-mark {
-  display: inline-grid;
+.addons-command::before,
+.addons-command::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
   place-items: center;
-  min-width: 1.5rem;
-  font-size: 1.2rem;
-  filter: drop-shadow(0 0 0.5rem rgba(251, 176, 59, 0.08));
+  pointer-events: none;
+  opacity: 0;
+}
+
+.addons-command::before {
+  content: "";
+  background:
+    linear-gradient(135deg, rgba(39, 225, 100, 0.96), rgba(39, 225, 100, 0.64)),
+    rgba(12, 93, 43, 0.92);
+  transform: translateY(100%) scale(0.98);
+}
+
+.addons-command::after {
+  content: "Copied!";
+  color: #eaffef;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translateY(0.625rem);
+}
+
+.addons-command.is-copied {
+  border-color: rgba(39, 225, 100, 0.8);
+}
+
+.addons-command.is-copied code,
+.addons-command.is-copied .addons-command-copy {
+  opacity: 0;
+  transform: translateY(-0.375rem);
+}
+
+.addons-command.is-copied::before {
+  animation: commandCopiedFill 1800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.addons-command.is-copied::after {
+  animation: commandCopiedText 1800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.addon-module {
+  min-height: 18.75rem;
+}
+
+.addons-footer {
+  margin-top: 1.5rem;
 }
 
 .cta {
@@ -926,6 +965,10 @@ h1 span:nth-child(2) {
     min-height: auto;
   }
 
+  .header-actions .btn-kingdom {
+    width: min(100%, 14rem);
+  }
+
   .features {
     padding: 4.375rem 0 3.875rem;
   }
@@ -934,7 +977,7 @@ h1 span:nth-child(2) {
     padding: 4.75rem 0 5.125rem;
   }
 
-  .comparison {
+  .addons {
     padding: 4.625rem 0 5.125rem;
   }
 
@@ -960,12 +1003,7 @@ h1 span:nth-child(2) {
 
 @media (min-width: 992px) {
   .feature {
-    border-right: 0.0625rem solid var(--line-cool);
-    border-bottom: 0;
-  }
-
-  .feature:last-child {
-    border-right: 0;
+    min-height: 18.25rem;
   }
 
   .terminal {
@@ -974,12 +1012,8 @@ h1 span:nth-child(2) {
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .feature:nth-child(odd) {
-    border-right: 0.0625rem solid var(--line-cool);
-  }
-
-  .feature:nth-last-child(-n + 2) {
-    border-bottom: 0;
+  .addon-module {
+    min-height: 14.75rem;
   }
 }
 
@@ -1026,24 +1060,14 @@ h1 span:nth-child(2) {
   }
 
   .preview,
-  .comparison,
+  .addons,
   .cta {
     padding-top: 4rem;
     padding-bottom: 4.25rem;
   }
 
-  .comparison-shell {
-    clip-path: polygon(0 0, calc(100% - 1.125rem) 0, 100% 1.125rem, 100% 100%, 1.125rem 100%, 0 calc(100% - 1.125rem));
-  }
-
-  .comparison-table {
-    min-width: 47.5rem;
-    font-size: 0.86rem;
-  }
-
-  .comparison-table th,
-  .comparison-table td {
-    padding: 0.75rem 0.875rem;
+  .addon-module {
+    padding-inline: 1rem;
   }
 
   main .btn-kingdom {
@@ -1141,6 +1165,66 @@ h1 span:nth-child(2) {
 
   to {
     transform: translate(-50%, -50%) scaleX(1);
+  }
+}
+
+@keyframes commandCopiedFill {
+  0% {
+    opacity: 0;
+    transform: translateY(100%) scale(0.98);
+  }
+
+  16%,
+  82% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100%) scale(0.98);
+  }
+}
+
+@keyframes commandCopiedText {
+  0% {
+    opacity: 0;
+    transform: translateY(0.625rem);
+  }
+
+  20%,
+  78% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-0.625rem);
+  }
+}
+
+@keyframes dividerCaretJump {
+  0%,
+  68%,
+  100% {
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  74% {
+    transform: translateX(-50%) translateY(0.35rem) rotate(45deg);
+  }
+
+  80% {
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  86% {
+    transform: translateX(-50%) translateY(0.16rem) rotate(45deg);
+  }
+
+  92% {
+    transform: translateX(-50%) rotate(45deg);
   }
 }
 

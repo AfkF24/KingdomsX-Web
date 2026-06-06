@@ -1,11 +1,13 @@
 ---
 import { SITE } from "../config";
+import SectionOrnament from "./SectionOrnament.astro";
 ---
 <section class="cta position-relative" aria-labelledby="cta-title">
   <div class="container position-relative z-1">
     <div class="cta-panel">
       <div class="d-flex flex-column align-items-center">
         <h2 class="text-center" id="cta-title">Ready?</h2>
+        <SectionOrnament />
         <p class="text-center mt-3 mb-0">Download the plugin, place it in your <code>plugins</code> folder, and restart the server. It's that simple, no dependencies needed! Supports all the older and latest Minecraft versions too.</p>
         <div class="d-flex flex-wrap gap-3 mt-4 justify-content-center">
           <a class="btn btn-kingdom btn-kingdom-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={SITE.spigot} target="_blank" rel="noopener noreferrer">
