@@ -4,7 +4,7 @@ const getGitSha = (value: string | undefined) => {
   return /^[0-9a-f]{7,40}$/i.test(sha) ? sha : "";
 };
 
-const sourceRepository = "https://github.com/AfkF24/KingdomsX-Web";
+const sourceRepository = "https://github.com/CryptoMorin/KingdomsX-Web";
 const gitSha = getGitSha(import.meta.env.PUBLIC_GIT_COMMIT_SHA ?? import.meta.env.PUBLIC_GIT_SHA);
 const shortGitSha = gitSha.slice(0, 7);
 const buildTimestamp = Math.floor(Date.now() / 1000).toString();
