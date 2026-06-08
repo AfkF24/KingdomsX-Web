@@ -10,6 +10,7 @@
   --muted: #b8c0c9;
   --dim: #7f8c98;
   --green: #27e164;
+  --orange-light: #ff9954;
   --shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.42);
   --display-font-family: "Lora", serif;
   --bs-body-color: var(--text);
@@ -21,6 +22,27 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: orange #191d24;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #191d24;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: orange;
+  border: 2px solid #191d24;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: darkorange;
 }
 
 body {
