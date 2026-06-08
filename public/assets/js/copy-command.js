@@ -48,8 +48,8 @@
       const copied = await copyText(command).catch(() => false);
 
       button.classList.toggle("is-copied", copied);
-      button.setAttribute("aria-label", copied ? `Copied ${command}` : `Copy failed for ${command}`);
-      if (status) status.textContent = copied ? "Copied!" : "Copy failed";
+      button.setAttribute("aria-label", copied ? `Copied in-game command ${command}` : `Copy failed for ${command}`);
+      if (status) status.textContent = copied ? "Copied command!" : "Copy failed";
 
       resetTimers.set(button, window.setTimeout(() => {
         button.classList.remove("is-copied");

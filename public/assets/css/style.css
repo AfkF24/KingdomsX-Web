@@ -415,7 +415,6 @@ h1 span:nth-child(2) {
   pointer-events: none;
 }
 
-.features::before,
 .preview::before,
 .addons::before,
 .cta::before {
@@ -1254,6 +1253,38 @@ h1 span:nth-child(2) {
       0 0 1.75rem rgba(255, 116, 23, 0.42),
       0 0 3.25rem rgba(251, 176, 59, 0.22);
   }
+}
+
+.error-page {
+  min-height: calc(100svh - 11.5rem);
+  padding: clamp(4.5rem, 9vw, 7rem) 0;
+}
+
+.error-content {
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+
+
+.error-code {
+  color: rgba(251, 176, 59, 0.28);
+  font-family: var(--display-font-family);
+  font-size: clamp(4.5rem, 18vw, 10rem);
+  font-weight: 700;
+  line-height: 0.82;
+  text-shadow: 0 1rem 2.75rem rgba(0, 0, 0, 0.34);
+}
+
+.error-page h1 {
+  color: var(--amber);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+}
+
+.error-message {
+  max-width: 36rem;
+  margin-top: 1.25rem;
+  color: #f0e7da;
+  font-size: clamp(1.04rem, 2vw, 1.2rem);
+  line-height: 1.7;
 }
 
 @keyframes cornerFlame {

@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import ErrorPage from "../components/ErrorPage.astro";
+import Footer from "../components/Footer.astro";
+---
+<BaseLayout
+  title="403 - Forbidden | KingdomsX"
+  description="Access to this page is restricted."
+  canonicalPath="/403.html"
+  robots="noindex, follow"
+  preloadHeroImage={false}
+  includeStructuredData={false}
+>
+  <div class="page" id="top">
+    <Header homeUrl="/" />
+    <main>
+      <ErrorPage
+        status="403"
+        title="The guards deny passage."
+        message="The gates are still standing, but your name is not on the list. You may lack the king’s favor."
+      />
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
