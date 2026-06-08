@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import ErrorPage from "../components/ErrorPage.astro";
 import Footer from "../components/Footer.astro";
+import { SITE } from "../config";
 ---
 <BaseLayout
   title="403 - Forbidden | KingdomsX"
@@ -13,7 +14,7 @@ import Footer from "../components/Footer.astro";
   includeStructuredData={false}
 >
   <div class="page" id="top">
-    <Header homeUrl="/" />
+    <Header homeUrl={SITE.url} />
     <main>
       <ErrorPage
         status="403"

@@ -16,7 +16,7 @@ const { status, title, message } = Astro.props;
       <h1 class="mw-100" id={`error-${status}-title`}>{title}</h1>
       <p class="error-message mx-auto mb-0">{message}</p>
       <div class="error-actions d-flex flex-wrap justify-content-center gap-3 mt-4">
-        <a class="btn btn-kingdom btn-kingdom-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href="/">
+        <a class="btn btn-kingdom btn-kingdom-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={SITE.url}>
           <i class="fa-solid fa-house-chimney" aria-hidden="true"></i>
           Return Home
         </a>
