@@ -7,13 +7,10 @@ const getGitSha = (value: string | undefined) => {
 const sourceRepository = "https://github.com/CryptoMorin/KingdomsX-Web";
 const gitSha = getGitSha(import.meta.env.PUBLIC_GIT_COMMIT_SHA ?? import.meta.env.PUBLIC_GIT_SHA);
 const shortGitSha = gitSha.slice(0, 7);
-const buildTimestamp = Math.floor(Date.now() / 1000).toString();
 
 export const SITE = {
   name: "KingdomsX",
   url: trimTrailingSlash(import.meta.env.PUBLIC_SITE_URL ?? "https://kingdomsx.com"),
-  assets: trimTrailingSlash(import.meta.env.PUBLIC_ASSETS_BASE ?? "/assets"),
-  assetVersion: shortGitSha || buildTimestamp,
   wiki: "https://wiki.kingdomsx.com",
   discord: "https://discord.kingdomsx.com",
   download: "https://download.kingdomsx.com",

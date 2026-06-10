@@ -1,5 +1,6 @@
 ---
 import { SITE } from "../config";
+import { siteImages } from "../site-assets";
 ---
 <section class="hero d-flex flex-column position-relative overflow-hidden" aria-labelledby="hero-title">
   <div class="hero-grid container flex-grow-1 d-flex align-items-center">
@@ -8,7 +9,7 @@ import { SITE } from "../config";
       <p class="lead">KingdomsX is a plugin similar to Factions which provides more advanced core features and introduces new mechanics such as turrets, structures, and invasions to make the game more fun.</p>
       <div class="d-flex flex-wrap gap-3 mt-4" aria-label="Primary plugin links">
         <a class="btn btn-kingdom btn-kingdom-primary d-inline-flex align-items-center justify-content-center gap-2 fw-bold" href={SITE.spigot} target="_blank" rel="noopener noreferrer">
-          <img class="icon icon-img" src={`${SITE.assets}/images/spigot.webp`} alt="" width="24" height="24" aria-hidden="true" draggable="false" />
+          <img class="icon icon-img" src={siteImages.spigot} alt="" width="24" height="24" aria-hidden="true" draggable="false" />
           Get on SpigotMC
         </a>
         <a

@@ -1,12 +1,13 @@
 ---
 import { SITE } from "../config";
+import { siteImages } from "../site-assets";
 
 const sourceCommitUrl = SITE.source.commit ? `${SITE.source.repository}/commit/${SITE.source.commit}` : "";
 ---
 <footer class="site-footer">
   <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between gap-4">
     <div class="footer-copy d-flex flex-column flex-md-row align-items-center gap-3 justify-content-center justify-content-sm-start text-center text-md-start">
-      <img src={`${SITE.assets}/images/logo.webp`} alt="" width="256" height="256" draggable="false" />
+      <img src={siteImages.logo} alt="" width="256" height="256" draggable="false" />
       <span>
         &copy; 2026 KingdomsX. A plugin by <a href={SITE.author} target="_blank" rel="noopener noreferrer">Crypto Morin</a>.
         <br />
