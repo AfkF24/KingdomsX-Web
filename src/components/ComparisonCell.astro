@@ -39,18 +39,18 @@ const cellClass = highlight ? "kingdomsx-column" : "";
     </span>
   )}
   {normalized === "addon" && (
-    <span class="comparison-text-label comparison-text-label--addon" aria-label={ariaLabel}>{labels[normalized]}</span>
+    <span class="comparison-text-label comparison-text-label--addon d-inline-block fw-bold text-nowrap" aria-label={ariaLabel}>{labels[normalized]}</span>
   )}
   {normalized === "na" && (
-    <span class="comparison-text-label comparison-text-label--na" aria-label={ariaLabel}>{labels[normalized]}</span>
+    <span class="comparison-text-label comparison-text-label--na d-inline-block fw-bold text-nowrap" aria-label={ariaLabel}>{labels[normalized]}</span>
   )}
   {normalized.startsWith("free") && (
-    <span class="comparison-text-label comparison-text-label--free" aria-label={ariaLabel}>{value}</span>
+    <span class="comparison-text-label comparison-text-label--free d-inline-block fw-bold text-nowrap" aria-label={ariaLabel}>{value}</span>
   )}
   {normalized.startsWith("premium") && (
-    <span class="comparison-text-label comparison-text-label--premium" aria-label={ariaLabel}>{value}</span>
+    <span class="comparison-text-label comparison-text-label--premium d-inline-block fw-bold text-nowrap" aria-label={ariaLabel}>{value}</span>
   )}
   {!isSymbolic && !isTextLabel && (
-    <span class:list={["comparison-text", normalized === "partial" && "comparison-text--partial"]} aria-label={ariaLabel}>{labels[normalized] || value}</span>
+    <span class:list={["comparison-text", "d-inline-block", "text-center", "fw-semibold", normalized === "partial" && "comparison-text--partial"]} aria-label={ariaLabel}>{labels[normalized] || value}</span>
   )}
 </td>

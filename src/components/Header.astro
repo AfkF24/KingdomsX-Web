@@ -11,7 +11,7 @@ const sectionHref = (id: string) => `${homeUrl}#${id}`;
 <header class="site-header sticky-top">
   <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
     <div class="container">
-      <a class="navbar-brand brand d-inline-flex align-items-center gap-3 mb-0" href={sectionHref("top")} aria-label="KingdomsX home">
+      <a class="navbar-brand brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" href={sectionHref("top")} aria-label="KingdomsX home">
         <img src={`${SITE.assets}/images/logo.webp`} alt="" width="256" height="256" draggable="false" />
         <span>KingdomsX</span>
       </a>
@@ -20,11 +20,11 @@ const sectionHref = (id: string) => `${homeUrl}#${id}`;
       </button>
       <div class="collapse navbar-collapse text-center" id="main-navigation">
         <div class="navbar-nav nav-links mx-lg-auto align-items-center gap-lg-4 pt-3 pt-lg-0" aria-label="Page sections">
-          <a class="nav-link" href={sectionHref("features")}>Features</a>
-          <a class="nav-link" href={sectionHref("preview")}>Preview</a>
-          <a class="nav-link" href={sectionHref("comparison")}>Compare</a>
-          <a class="nav-link" href={sectionHref("addons")}>Addons</a>
-          <a class="nav-link" href={SITE.download} target="_blank" rel="noopener noreferrer">Download</a>
+          <a class="nav-link fw-bold" href={sectionHref("features")}>Features</a>
+          <a class="nav-link fw-bold" href={sectionHref("preview")}>Preview</a>
+          <a class="nav-link fw-bold" href={sectionHref("comparison")}>Compare</a>
+          <a class="nav-link fw-bold" href={sectionHref("addons")}>Addons</a>
+          <a class="nav-link fw-bold" href={SITE.download} target="_blank" rel="noopener noreferrer">Download</a>
         </div>
         <div class="header-actions d-flex flex-column flex-sm-row align-items-center justify-content-center gap-2 mt-3 mt-lg-0 ms-lg-4">
           <a class="btn btn-kingdom btn-discord d-inline-flex align-items-center justify-content-center gap-2 fw-bold py-2 px-3" href={SITE.discord} target="_blank" rel="noopener noreferrer">

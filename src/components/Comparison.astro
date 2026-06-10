@@ -18,22 +18,23 @@ const categoryIcons: Record<string, string> = {
 ---
 <section class="comparison position-relative" id="comparison" aria-labelledby="comparison-title">
   <div class="container position-relative z-1">
-    <h2 class="section-title text-center" id="comparison-title">How KingdomsX compares</h2>
+    <h2 class="section-title text-center mb-0" id="comparison-title">How KingdomsX compares</h2>
     <SectionOrnament />
     <p class="section-kicker text-center mx-auto">
       Compare KingdomsX side-by-side with other popular Minecraft land claiming plugins to find whether and why it's just the right fit for your server.
     </p>
-    <p class="comparison-swipe-hint text-center mx-auto mt-3 mb-0" aria-hidden="true">
+    <p class="comparison-swipe-hint align-items-center justify-content-center fw-bold text-center mx-auto mt-3 mb-0" aria-hidden="true">
       <i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i>
       Swipe inside the table to see other plugin columns
     </p>
 
-    <div class="accordion comparison-accordion mt-5" id="comparison-accordion">
+    <div class="accordion comparison-accordion d-flex flex-column mt-5" id="comparison-accordion">
       {comparisonCategories.map((category) => (
-        <div class="comparison-panel">
+        <div class="comparison-panel rounded-3 overflow-hidden">
           <button
             class:list={[
               "comparison-panel-header",
+              "d-flex align-items-center gap-3 w-100 border-0 bg-transparent fw-bold text-start",
               !category.defaultOpen && "collapsed"
             ]}
             type="button"
@@ -46,7 +47,6 @@ const categoryIcons: Record<string, string> = {
               <i class={`fa-solid ${categoryIcons[category.id] || "fa-circle"}`} aria-hidden="true"></i>
             </span>
             <span class="comparison-panel-title">{category.label}</span>
-            <!--<span class="comparison-panel-count">{category.rows.length} features</span>-->
             <span class="comparison-panel-chevron">
               <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
             </span>
@@ -60,13 +60,13 @@ const categoryIcons: Record<string, string> = {
             ]}
             data-bs-parent="#comparison-accordion"
           >
-            <div class="table-responsive comparison-shell" role="region" aria-label={`${category.label} comparison`} tabindex="0">
+            <div class="table-responsive comparison-shell m-0" role="region" aria-label={`${category.label} comparison`} tabindex="0">
               <table class="table table-hover align-middle text-center mb-0 comparison-table">
                 <thead>
                   <tr>
-                    <th scope="col" class="comparison-feature-col">Feature</th>
+                    <th scope="col" class="comparison-feature-col fw-semibold text-start">Feature</th>
                     {plugins.map((plugin) => (
-                      <th scope="col" class:list={[plugin.id === "kingdomsx" && "kingdomsx-column"]} data-plugin={plugin.id}>
+                      <th scope="col" class:list={["fw-bold text-nowrap", plugin.id === "kingdomsx" && "kingdomsx-column"]} data-plugin={plugin.id}>
                         {plugin.label}
                       </th>
                     ))}
@@ -75,12 +75,12 @@ const categoryIcons: Record<string, string> = {
                 <tbody>
                   {category.rows.map((row) => (
                     <tr class="comparison-row">
-                      <th scope="row" class="comparison-feature-col">
-                        <div class="feature-title-wrap d-flex align-items-center justify-content-between">
+                      <th scope="row" class="comparison-feature-col fw-semibold text-start">
+                        <div class="d-flex align-items-center justify-content-between w-100">
                           <span>{row.feature}</span>
                           {row.hint && (
                             <button
-                              class="feature-hint"
+                              class="feature-hint d-inline-flex align-items-center justify-content-center flex-shrink-0 p-0 border-0 rounded-circle bg-transparent"
                               type="button"
                               data-bs-toggle="tooltip"
                               data-bs-placement="top"
