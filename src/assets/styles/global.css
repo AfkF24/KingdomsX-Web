@@ -62,12 +62,13 @@ img {
 }
 
 .page {
+  --page-bg-top: #08131d;
+  --page-bg-mid: #071019;
+  --page-bg-low: #050b12;
+  --page-bg-bottom: #03070c;
   isolation: isolate;
   background:
-    radial-gradient(circle at 75% 10%, rgba(255, 116, 23, 0.2), transparent 25rem),
-    radial-gradient(circle at 15% 40%, rgba(45, 64, 83, 0.55), transparent 32rem),
-    radial-gradient(circle at 80% 75%, rgba(251, 176, 59, 0.1), transparent 28rem),
-    linear-gradient(180deg, #08131d 0%, var(--bg) 42%, var(--bg-deep) 100%);
+    linear-gradient(180deg, var(--page-bg-top) 0%, var(--page-bg-mid) 24%, #07111b 44%, var(--page-bg-low) 72%, var(--page-bg-bottom) 100%);
 }
 
 .page::before,
@@ -80,19 +81,23 @@ img {
 }
 
 .page::before {
-  opacity: 0.3;
-  background-image:
-    linear-gradient(rgba(251, 176, 59, 0.05) 0.0625rem, transparent 0.0625rem),
-    linear-gradient(90deg, rgba(251, 176, 59, 0.05) 0.0625rem, transparent 0.0625rem);
-  background-size: 5rem 5rem;
-  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.7) 58%, transparent 100%);
+  background:
+    radial-gradient(circle at 78% 6%, rgba(255, 116, 23, 0.2), transparent 26rem),
+    radial-gradient(circle at 15% 24%, rgba(45, 64, 83, 0.45), transparent 36rem),
+    radial-gradient(circle at 86% 48%, rgba(251, 176, 59, 0.1), transparent 30rem),
+    radial-gradient(circle at 22% 68%, rgba(35, 57, 74, 0.35), transparent 34rem),
+    radial-gradient(circle at 72% 88%, rgba(255, 116, 23, 0.1), transparent 28rem);
+  opacity: 0.95;
 }
 
 .page::after {
-  opacity: 0.3;
-  background:
-    linear-gradient(180deg, transparent 55%, rgba(3, 7, 12, 0.8)),
-    repeating-linear-gradient(90deg, transparent 0 3.625rem, rgba(251, 176, 59, 0.05) 3.625rem 3.75rem);
+  opacity: 0.4;
+  background-image:
+    linear-gradient(rgba(251, 176, 59, 0.065) 0.0625rem, transparent 0.0625rem),
+    linear-gradient(90deg, rgba(251, 176, 59, 0.065) 0.0625rem, transparent 0.0625rem),
+    repeating-linear-gradient(90deg, transparent 0 3.625rem, rgba(251, 176, 59, 0.035) 3.625rem 3.75rem);
+  background-size: 5rem 5rem;
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 58%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 .site-header {
@@ -221,9 +226,9 @@ img {
 }
 
 .hero {
-  --hero-divider-height: 5.375rem;
-  --hero-divider-edge: 3.5625rem;
-  --hero-divider-valley: 1.5rem;
+  --hero-divider-height: 4.75rem;
+  --hero-divider-edge: 3.45rem;
+  --hero-divider-valley: 1.55rem;
   min-height: calc(100svh - 4.375rem);
   padding: 0 0 var(--hero-divider-height);
   isolation: isolate;
@@ -235,7 +240,7 @@ img {
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(180deg, rgba(7, 16, 25, 0.05), rgba(7, 16, 25, 0.35)),
+    linear-gradient(180deg, rgba(7, 16, 25, 0.02), rgba(7, 16, 25, 0.3) 58%, rgba(7, 16, 25, 0.8) 100%),
     linear-gradient(90deg, rgba(7, 16, 25, 0.95) 0%, rgba(7, 16, 25, 0.8) 42%, rgba(7, 16, 25, 0.25) 76%, rgba(7, 16, 25, 0.1) 100%),
     url("../images/cta-castle-banner.webp") 82% center / cover no-repeat;
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--hero-divider-edge)), 67% calc(100% - var(--hero-divider-valley)), 50% calc(100% - var(--hero-divider-valley)), 33% calc(100% - var(--hero-divider-valley)), 0 calc(100% - var(--hero-divider-edge)));
@@ -254,7 +259,6 @@ img {
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--hero-divider-edge)), 67% calc(100% - var(--hero-divider-valley)), 50% calc(100% - var(--hero-divider-valley)), 33% calc(100% - var(--hero-divider-valley)), 0 calc(100% - var(--hero-divider-edge)));
   opacity: 0;
   animation: heroImageGlow 8.5s ease-in-out infinite;
-  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.25) 34%, #000 58%, #000 100%);
   will-change: opacity;
 }
 
@@ -345,14 +349,13 @@ h1 span:nth-child(2) {
   color: var(--amber);
 }
 
-.divider::before,
-.divider::after {
+.divider::before {
   content: "";
   position: absolute;
   inset: 0;
+  pointer-events: none;
   background: linear-gradient(90deg, transparent 0%, var(--amber) 28%, var(--orange) 50%, var(--amber) 72%, transparent 100%);
   clip-path: polygon(0 34%, 33% 66%, 50% 66%, 67% 66%, 100% 34%, 100% 38%, 67% 72%, 50% 72%, 33% 72%, 0 38%);
-  pointer-events: none;
 }
 
 .divider-caret {
@@ -411,45 +414,28 @@ h1 span:nth-child(2) {
 .addons,
 .cta {
   isolation: isolate;
+  background: transparent;
 }
 
 .features::before,
 .comparison::before,
 .preview::before,
 .addons::before,
-.cta::before,
-.features::after,
-.comparison::after,
-.preview::after,
-.addons::after,
-.cta::after {
+.cta::before {
   content: "";
   position: absolute;
-  right: 0;
-  left: 0;
+  inset: -6rem 0;
   z-index: 0;
-  height: clamp(4.5rem, 9vw, 8.25rem);
   pointer-events: none;
-}
-
-.comparison::before,
-.preview::before,
-.addons::before,
-.cta::before {
-  top: 0;
-  background: linear-gradient(180deg, rgba(7, 16, 25, 0.3), rgba(7, 16, 25, 0));
-}
-
-.features::after,
-.comparison::after,
-.preview::after,
-.addons::after,
-.cta::after {
-  bottom: 0;
-  background: linear-gradient(0deg, rgba(7, 16, 25, 0.3), rgba(7, 16, 25, 0));
+  background: var(--section-glow);
+  opacity: var(--section-glow-opacity, 1);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
 }
 
 .features {
+  --section-glow:
+    radial-gradient(circle at 18% 15%, rgba(251, 176, 59, 0.1), transparent 24rem),
+    radial-gradient(circle at 82% 72%, rgba(45, 64, 83, 0.2), transparent 27rem);
   padding: 5.5rem 0 4.75rem;
 }
 
@@ -509,10 +495,10 @@ h1 span:nth-child(2) {
 }
 
 .preview {
+  --section-glow:
+    radial-gradient(circle at 50% 54%, rgba(251, 176, 59, 0.1), transparent 28rem),
+    radial-gradient(circle at 88% 10%, rgba(45, 64, 83, 0.2), transparent 24rem);
   padding: 6.5rem 0 6.875rem;
-  background:
-    linear-gradient(180deg, rgba(7, 16, 25, 0), rgba(7, 16, 25, 0.1) 18%, rgba(3, 7, 12, 0.3) 100%),
-    radial-gradient(circle at 50% 100%, rgba(251, 176, 59, 0.1), transparent 24rem);
 }
 
 .preview-shell {
@@ -771,17 +757,17 @@ h1 span:nth-child(2) {
 }
 
 .addons {
+  --section-glow:
+    radial-gradient(circle at 48% 28%, rgba(45, 64, 83, 0.25), transparent 29rem),
+    radial-gradient(circle at 78% 76%, rgba(255, 116, 23, 0.1), transparent 25rem);
   padding: 6.125rem 0 6.75rem;
-  background:
-    linear-gradient(180deg, rgba(3, 7, 12, 0.3), rgba(7, 16, 25, 0.2) 24%, rgba(7, 16, 25, 0.3) 100%),
-    radial-gradient(circle at 50% 30%, rgba(45, 64, 83, 0.25), transparent 28rem);
 }
 
 .comparison {
+  --section-glow:
+    radial-gradient(circle at 20% 40%, rgba(251, 176, 59, 0.1), transparent 24rem),
+    radial-gradient(circle at 86% 78%, rgba(35, 57, 74, 0.2), transparent 28rem);
   padding: 5.75rem 0 5.5rem;
-  background:
-    linear-gradient(180deg, rgba(7, 16, 25, 0.05), rgba(3, 7, 12, 0.2) 55%, rgba(7, 16, 25, 0.1) 100%),
-    radial-gradient(circle at 20% 40%, rgba(251, 176, 59, 0.08), transparent 22rem);
 }
 
 
@@ -1288,10 +1274,10 @@ h1 span:nth-child(2) {
 }
 
 .cta {
+  --section-glow:
+    radial-gradient(circle at 76% 46%, rgba(255, 116, 23, 0.1), transparent 27rem),
+    radial-gradient(circle at 22% 88%, rgba(45, 64, 83, 0.2), transparent 23rem);
   padding: 5.75rem 0 6rem;
-  background:
-    linear-gradient(180deg, rgba(7, 16, 25, 0.3), rgba(7, 16, 25, 0.1) 28%, rgba(3, 7, 12, 0.2) 100%),
-    radial-gradient(circle at 75% 50%, rgba(255, 116, 23, 0.1), transparent 25rem);
 }
 
 .cta-panel {
@@ -1325,7 +1311,7 @@ h1 span:nth-child(2) {
 .site-footer {
   padding: 1.875rem 0 2.625rem;
   border-top: 0;
-  background: linear-gradient(180deg, rgba(3, 7, 12, 0.2), rgba(3, 7, 12, 0.5));
+  background: transparent;
 }
 
 .footer-copy {
@@ -1487,7 +1473,7 @@ h1 span:nth-child(2) {
 
   .terminal {
     padding: 0 1.125rem 1.5rem;
-    font-size: 0.825rem;
+    font-size: 0.85rem;
   }
 
   .terminal-stage {
@@ -1677,7 +1663,7 @@ h1 span:nth-child(2) {
   color: rgba(251, 176, 59, 0.3);
   font-family: var(--display-font-family);
   font-size: clamp(4.5rem, 18vw, 10rem);
-  line-height: 0.82;
+  line-height: 0.8;
   text-shadow: 0 1rem 2.75rem rgba(0, 0, 0, 0.35);
 }
 
