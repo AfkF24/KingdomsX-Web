@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 const trimTrailingSlash = (value) => {
@@ -17,6 +17,16 @@ export default defineConfig({
     assets: "build",
     ...(assetsPrefix ? { assetsPrefix } : {})
   },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Lora",
+      cssVariable: "--font-lora",
+      weights: ["400 700"],
+      styles: ["normal", "italic"],
+      fallbacks: ["serif"]
+    }
+  ],
   integrations: [
     ...(siteUrl
       ? [

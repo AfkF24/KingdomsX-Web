@@ -4,12 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node ./node_modules/astro/astro.js dev",
-    "build": "node ./node_modules/astro/astro.js build",
-    "preview": "node ./node_modules/astro/astro.js preview"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.13.4"
+    "@astrojs/sitemap": "^3.7.3",
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "astro": "6.4.6",
+    "bootstrap": "^5.3.8",
+    "photoswipe": "^5.4.4"
   }
 }

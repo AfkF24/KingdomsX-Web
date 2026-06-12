@@ -1,12 +1,14 @@
+import { Tooltip } from "bootstrap";
+
 (() => {
   const section = document.getElementById("comparison");
   if (!section) return;
 
   const tooltipTriggers = Array.from(section.querySelectorAll('[data-bs-toggle="tooltip"]'));
 
-  if (window.bootstrap?.Tooltip) {
+  if (Tooltip) {
     tooltipTriggers.forEach((element) => {
-      new window.bootstrap.Tooltip(element, {
+      new Tooltip(element, {
         container: "body",
         customClass: "comparison-tooltip",
         trigger: "hover focus click",

@@ -1,0 +1,180 @@
+---
+import SectionOrnament from "./SectionOrnament.astro";
+import buildingVisualsAnimations from "../assets/images/gallery/building-visuals-animations.webp";
+import interactiveHelpPages from "../assets/images/gallery/interactive-help-pages.webp";
+import advancedGuis from "../assets/images/gallery/advanced-guis.webp";
+import advancedCommandAutoCompletions from "../assets/images/gallery/advanced-command-auto-completions.webp";
+import interactiveMapKingdomInformation from "../assets/images/gallery/interactive-map-kingdom-information.webp";
+import landIndicatorsVisualizers from "../assets/images/gallery/land-indicators-visualizers.webp";
+
+const galleryItems = [
+  {
+    type: "image",
+    src: buildingVisualsAnimations.src,
+    width: buildingVisualsAnimations.width,
+    height: buildingVisualsAnimations.height,
+    title: "Building Visuals & Animations",
+    alt: "Building Visuals & Animations"
+  },
+  {
+    type: "image",
+    src: interactiveHelpPages.src,
+    width: interactiveHelpPages.width,
+    height: interactiveHelpPages.height,
+    title: "Interactive Help Pages",
+    alt: "Interactive Help Pages"
+  },
+  {
+    type: "image",
+    src: advancedGuis.src,
+    width: advancedGuis.width,
+    height: advancedGuis.height,
+    title: "Advanced GUIs, Custom Ranks, Shields, Kingdom Settings & More",
+    alt: "Advanced GUIs, Custom Ranks, Shields, Kingdom Settings & More"
+  },
+  {
+    type: "image",
+    src: advancedCommandAutoCompletions.src,
+    width: advancedCommandAutoCompletions.width,
+    height: advancedCommandAutoCompletions.height,
+    title: "Advanced Command Auto Completions",
+    alt: "Advanced Command Auto Completions"
+  },
+  {
+    type: "image",
+    src: interactiveMapKingdomInformation.src,
+    width: interactiveMapKingdomInformation.width,
+    height: interactiveMapKingdomInformation.height,
+    title: "Interactive Map & Kingdom Information",
+    alt: "Interactive Map & Kingdom Information"
+  },
+  {
+    type: "image",
+    src: landIndicatorsVisualizers.src,
+    width: landIndicatorsVisualizers.width,
+    height: landIndicatorsVisualizers.height,
+    title: "Land Indicators & Visualizers",
+    alt: "Land Indicators & Visualizers"
+  }
+];
+
+const previewLimit = 6;
+const previewItems = galleryItems.slice(0, previewLimit);
+const [featuredItem, ...secondaryItems] = previewItems;
+const sideItems = secondaryItems.slice(0, 2);
+const bottomItems = secondaryItems.slice(2);
+const galleryCardBaseClass = "gallery-card position-relative d-flex overflow-hidden p-0 text-start";
+const galleryCardMediaClass = "gallery-card-media position-absolute top-0 end-0 bottom-0 start-0";
+const getPswpType = (type: string) => (type === "video" ? "html" : undefined);
+---
+<section class="gallery position-relative" id="gallery" aria-labelledby="gallery-title">
+  <div class="container position-relative z-1">
+    <h2 class="section-title text-center mb-0" id="gallery-title">Gallery</h2>
+    <SectionOrnament />
+    <p class="section-kicker text-center mx-auto">Explore the plugin in action through in-game gifs and screenshots.</p>
+
+    <div class="gallery-grid row g-3 mt-4" data-gallery>
+      {featuredItem && (
+        <div class="col-12 col-sm-6 col-lg-8">
+          <a
+            class={`${galleryCardBaseClass} gallery-card--featured`}
+            href={featuredItem.src}
+            target="_blank"
+            data-pswp-width={featuredItem.width}
+            data-pswp-height={featuredItem.height}
+            data-pswp-title={featuredItem.title}
+            data-pswp-type={getPswpType(featuredItem.type)}
+            data-gallery-media-type={featuredItem.type}
+            data-gallery-video-src={featuredItem.type === "video" ? featuredItem.src : undefined}
+            aria-label={`Open gallery item 1: ${featuredItem.title}`}
+          >
+            <span class={galleryCardMediaClass}>
+              {featuredItem.type === "video" ? (
+                <video src={featuredItem.src} aria-label={featuredItem.alt} width={featuredItem.width} height={featuredItem.height} autoplay muted loop playsinline preload="metadata"></video>
+              ) : (
+                <img src={featuredItem.src} alt={featuredItem.alt} width={featuredItem.width} height={featuredItem.height} decoding="async" draggable="false" />
+              )}
+            </span>
+            <span class="gallery-card-content position-relative z-1 align-self-end">
+              <span class="gallery-card-title">{featuredItem.title}</span>
+            </span>
+            <span class="gallery-card-action position-absolute top-0 end-0 z-2 d-grid m-3" aria-hidden="true">
+              <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+            </span>
+          </a>
+        </div>
+      )}
+      <div class="col-12 col-lg-4 gallery-side-column">
+        <div class="row g-3 gallery-side-row">
+          {sideItems.map((item, index) => (
+            <div class="col-12 col-sm-6 col-lg-12">
+              <a
+                class={`${galleryCardBaseClass} gallery-card--compact`}
+                href={item.src}
+                target="_blank"
+                data-pswp-width={item.width}
+                data-pswp-height={item.height}
+                data-pswp-title={item.title}
+                data-pswp-type={getPswpType(item.type)}
+                data-gallery-media-type={item.type}
+                data-gallery-video-src={item.type === "video" ? item.src : undefined}
+                aria-label={`Open gallery item ${index + 2}: ${item.title}`}
+              >
+                <span class={galleryCardMediaClass}>
+                  {item.type === "video" ? (
+                    <video src={item.src} aria-label={item.alt} width={item.width} height={item.height} autoplay muted loop playsinline preload="metadata"></video>
+                  ) : (
+                    <img src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" decoding="async" draggable="false" />
+                  )}
+                </span>
+                <span class="gallery-card-content position-relative z-1 align-self-end">
+                  <span class="gallery-card-title">{item.title}</span>
+                </span>
+                <span class="gallery-card-action position-absolute top-0 end-0 z-2 d-grid m-3" aria-hidden="true">
+                  <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </span>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+      {bottomItems.map((item, index) => (
+        <div class="col-12 col-sm-6 col-lg-4">
+          <a
+            class={`${galleryCardBaseClass} gallery-card--standard`}
+            href={item.src}
+            target="_blank"
+            data-pswp-width={item.width}
+            data-pswp-height={item.height}
+            data-pswp-title={item.title}
+            data-pswp-type={getPswpType(item.type)}
+            data-gallery-media-type={item.type}
+            data-gallery-video-src={item.type === "video" ? item.src : undefined}
+            aria-label={`Open gallery item ${index + 4}: ${item.title}`}
+          >
+            <span class={galleryCardMediaClass}>
+              {item.type === "video" ? (
+                <video src={item.src} aria-label={item.alt} width={item.width} height={item.height} autoplay muted loop playsinline preload="metadata"></video>
+              ) : (
+                <img src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" decoding="async" draggable="false" />
+              )}
+            </span>
+            <span class="gallery-card-content position-relative z-1 align-self-end">
+              <span class="gallery-card-title">{item.title}</span>
+            </span>
+            <span class="gallery-card-action position-absolute top-0 end-0 z-2 d-grid m-3" aria-hidden="true">
+              <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+            </span>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <div class="d-flex justify-content-center mt-4">
+      <button class="btn btn-kingdom w-auto d-inline-flex align-items-center justify-content-center gap-2 fw-bold" type="button" data-gallery-open-all>
+        <i class="fa-solid fa-images" aria-hidden="true"></i>
+        Open full gallery ({galleryItems.length})
+      </button>
+    </div>
+  </div>
+</section>
