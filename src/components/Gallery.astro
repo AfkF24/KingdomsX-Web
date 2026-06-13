@@ -75,9 +75,9 @@ const getPswpType = (type: string) => (type === "video" ? "html" : undefined);
 
     <div class="gallery-grid row g-3 mt-4" data-gallery>
       {featuredItem && (
-        <div class="col-12 col-sm-6 col-lg-8">
+        <div class="col-12 col-sm-6 col-lg-8 d-flex">
           <a
-            class={`${galleryCardBaseClass} gallery-card--featured`}
+            class={`${galleryCardBaseClass} gallery-card--featured h-100 w-100`}
             href={featuredItem.src}
             target="_blank"
             data-pswp-width={featuredItem.width}
