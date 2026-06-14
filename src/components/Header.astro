@@ -10,31 +10,40 @@ const { homeUrl = "" } = Astro.props;
 const sectionHref = (id: string) => `${homeUrl}#${id}`;
 ---
 <header class="site-header sticky-top">
-  <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+  <nav class="navbar navbar-expand-xl" aria-label="Main navigation">
     <div class="container">
       <a class="navbar-brand brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" href={sectionHref("top")} aria-label="KingdomsX home">
         <img src={siteImages.logo} alt="" width="256" height="256" draggable="false" />
         <span>KingdomsX</span>
       </a>
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler d-inline-grid d-xl-none ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse text-center" id="main-navigation">
-        <div class="navbar-nav nav-links mx-lg-auto align-items-center gap-lg-4 pt-3 pt-lg-0" aria-label="Page sections">
-          <a class="nav-link fw-bold" href={sectionHref("features")}>Features</a>
-          <a class="nav-link fw-bold" href={sectionHref("preview")}>Preview</a>
-          <a class="nav-link fw-bold" href={sectionHref("comparison")}>Compare</a>
-          <a class="nav-link fw-bold" href={sectionHref("gallery")}>Gallery</a>
-          <a class="nav-link fw-bold" href={sectionHref("addons")}>Addons</a>
-          <a class="nav-link fw-bold" href={SITE.download} target="_blank" rel="noopener noreferrer">Download</a>
+      <div class="offcanvas-xl offcanvas-end main-navigation flex-xl-grow-1" tabindex="-1" id="main-navigation" aria-labelledby="main-navigation-title">
+        <div class="offcanvas-header d-xl-none position-relative z-1 justify-content-between gap-3">
+          <h2 class="offcanvas-title brand d-inline-flex align-items-center gap-3 mb-0 fw-bold" id="main-navigation-title">
+            <img src={siteImages.logo} alt="" width="256" height="256" draggable="false" />
+            <span>KingdomsX</span>
+          </h2>
+          <button type="button" class="btn-close d-grid" data-bs-dismiss="offcanvas" data-bs-target="#main-navigation" aria-label="Close navigation"></button>
         </div>
-        <div class="header-actions d-flex flex-column flex-sm-row align-items-center justify-content-center gap-2 mt-3 mt-lg-0 ms-lg-4">
-          <a class="btn btn-kingdom btn-discord d-inline-flex align-items-center justify-content-center gap-2 fw-bold py-2 px-3" href={SITE.discord} target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-discord" aria-hidden="true"></i> Discord
-          </a>
-          <a class="btn btn-kingdom d-inline-flex align-items-center justify-content-center gap-2 fw-bold py-2 px-3" href={SITE.wiki} target="_blank" rel="noopener noreferrer">
-            <i class="fa-solid fa-book-open" aria-hidden="true"></i> Wiki
-          </a>
+        <div class="offcanvas-body position-relative z-1 d-flex flex-column flex-xl-row justify-content-start text-center align-items-xl-center w-100">
+          <div class="navbar-nav nav-links mx-xl-auto align-items-stretch align-items-xl-center gap-2 gap-xl-4" aria-label="Page sections">
+            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("features")}><i class="fa-solid fa-star fa-fw me-2 d-xl-none" aria-hidden="true"></i>Features</a>
+            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("preview")}><i class="fa-solid fa-eye fa-fw me-2 d-xl-none" aria-hidden="true"></i>Preview</a>
+            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("comparison")}><i class="fa-solid fa-scale-balanced fa-fw me-2 d-xl-none" aria-hidden="true"></i>Compare</a>
+            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("gallery")}><i class="fa-solid fa-images fa-fw me-2 d-xl-none" aria-hidden="true"></i>Gallery</a>
+            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={sectionHref("addons")}><i class="fa-solid fa-puzzle-piece fa-fw me-2 d-xl-none" aria-hidden="true"></i>Addons</a>
+            <a class="nav-link d-flex d-xl-block align-items-center justify-content-center fw-bold" href={SITE.download} target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download fa-fw me-2 d-xl-none" aria-hidden="true"></i>Download</a>
+          </div>
+          <div class="header-actions d-flex flex-column flex-sm-row align-items-center justify-content-center gap-2 mt-3 mt-xl-0 ms-xl-4">
+            <a class="btn btn-kingdom btn-discord d-inline-flex align-items-center justify-content-center gap-2 fw-bold py-2 px-3" href={SITE.discord} target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-discord" aria-hidden="true"></i> Discord
+            </a>
+            <a class="btn btn-kingdom d-inline-flex align-items-center justify-content-center gap-2 fw-bold py-2 px-3" href={SITE.wiki} target="_blank" rel="noopener noreferrer">
+              <i class="fa-solid fa-book-open" aria-hidden="true"></i> Wiki
+            </a>
+          </div>
         </div>
       </div>
     </div>
