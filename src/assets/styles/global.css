@@ -135,16 +135,22 @@ img {
   background-size: 1.25rem 1.25rem;
 }
 
-.navbar-toggler:hover,
-.navbar-toggler:focus-visible {
+.navbar-toggler:hover {
   border-color: var(--amber);
   background: transparent;
   box-shadow: 0 0.75rem 1.875rem rgba(0, 0, 0, 0.3), 0 0 0 0.25rem rgba(251, 176, 59, 0.1);
   filter: brightness(1.05);
 }
 
-.navbar-toggler:focus {
+.navbar-toggler:focus-visible {
+  border-color: var(--amber);
+  background: transparent;
   box-shadow: 0 0 0 0.25rem rgba(251, 176, 59, 0.2);
+  filter: brightness(1.05);
+}
+
+.navbar-toggler:focus:not(:focus-visible) {
+  box-shadow: none;
 }
 
 .brand {
